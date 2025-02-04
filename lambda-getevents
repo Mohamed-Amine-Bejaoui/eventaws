@@ -1,0 +1,19 @@
+import mysql from 'mysql2/promise';
+
+export const handler = async () => {
+  const connection = await mysql.createConnection({
+      host: 'hostName',
+      user: 'admin',
+      password: 'password',
+      database: 'dbName'
+  });
+
+  try {
+      const [events] = await connection.execute(`SELECT * FROM events ORDER BY event_date DESC`);
+      return { statusCode: 200, body: JSON.stringify(events) };
+  } catch (error) {
+      return { statusCode: 500, body: JSON.stringify({ error: error.message }) };
+  } finally {
+      await connection.end();
+  }
+};
