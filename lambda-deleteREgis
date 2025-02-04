@@ -1,0 +1,32 @@
+import mysql from 'mysql2/promise';
+
+export const handler = async (event) => {
+  let connection;
+
+  try {
+    const body = JSON.parse(event.body || '{}'); // Prevents errors if body is empty
+    const RegisId = body.id;    
+    if (!RegisId) {
+      return { statusCode: 400, body: JSON.stringify({ error: "Missing registration ID" }) };
+    }
+
+    connection = await mysql.createConnection({
+      host: 'databaseName',
+      user: 'admin',
+      password: 'password',
+      database: 'dbName'
+    });
+
+    const [result] = await connection.execute('DELETE FROM registrations WHERE id = ?', [RegisId]);
+
+    if (result.affectedRows === 0) {
+      return { statusCode: 404, body: JSON.stringify({ error: "Registration not found" }) };
+    }
+
+    return { statusCode: 200, body: JSON.stringify({ message: 'Registration deleted successfully' }) };
+  } catch (error) {
+    return { statusCode: 500, body: JSON.stringify({ error: error.message }) };
+  } finally {
+    if (connection) await connection.end();
+  }
+};
