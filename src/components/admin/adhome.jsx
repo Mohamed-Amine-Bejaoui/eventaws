@@ -9,7 +9,6 @@ const Adhome = ({isAdmin,email}) => {
         <div className='titlehome'>
           Turn moments into memories with <span style={{ color: "#00FFDD" }}>Eventify</span>
         </div>
-        {/* Use a simple anchor tag to scroll */}
         <a href="#events" style={{ textDecoration: "none" }}>
           <div className='button'>
   <span style={{ marginTop:"-7px", color:"rgb(25, 25, 25)" }}>&#8595;</span>
