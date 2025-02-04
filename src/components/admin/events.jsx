@@ -1,7 +1,7 @@
 import AWS from 'aws-sdk';
 import "../../styles/adevents.css";
 import React, { useState, useEffect } from 'react';
-// Set up AWS S3 instance
+
 const s3 = new AWS.S3({
   region: 'eu-west-1',
   credentials: new AWS.Credentials(process.env.REACT_APP_AWS_ACCESS_KEY_ID,process.env.REACT_APP_AWS_SECRET_ACCESS_KEY),
@@ -48,13 +48,11 @@ const EventsAD = ({isAdmin,email}) => {
     fetchEvents();
   }, []);
 
-  // Handle input changes
   const handleInputChange = ({ target: { name, value } }) => {
     setNewEvent(prev => ({ ...prev, [name]: value }));
   };
   const handleRegis = async (event, email) => 
   {
-    //setIsRegistered(true);
     const seatsTa=2;
     try {
       console.log(event,email)
@@ -68,7 +66,7 @@ const EventsAD = ({isAdmin,email}) => {
           seatsT: 2
         })
       });
-      /*
+      
       selectedEvent.seats=seatsTa
       console.log (JSON.stringify(selectedEvent))
       const UpdateResponse = await fetch(`https://y7a64avn3a.execute-api.eu-west-1.amazonaws.com/events/${event}`, {
@@ -76,15 +74,11 @@ const EventsAD = ({isAdmin,email}) => {
         headers: { 'Content-Type': 'application/json' },
         body:JSON.stringify(selectedEvent)
       });
-  */
+  
       if (!submitResponse.ok) {
         throw new Error('Failed to add registeration');
       }
-    /*  if(!UpdateResponse){
-        throw new Error('failed to update the event')
-      }
-  */
-      // Reset form or state (assuming setNewRegis is a function)
+    
   
     } catch (error) {
       console.error("Error registering:", error);
@@ -94,21 +88,14 @@ const EventsAD = ({isAdmin,email}) => {
 
 
   
-  // Handle file change
   const handleFileChange = ({ target: { files } }) => {
     setNewEvent(prev => ({ ...prev, image_url: files[0] }));
   };
-
-
-
-  
-  // Handle event addition
-  const handleAddEvent = async (e) => {
+    const handleAddEvent = async (e) => {
     e.preventDefault();
     setLoadingEvent(true);
 
     try {
-      // Basic form validation
       if (!newEvent.title || !newEvent.description || !newEvent.event_date || !newEvent.price || !newEvent.location || !newEvent.capacity || !newEvent.seats || !newEvent.image_url) {
         setError("All fields are required.");
         setLoadingEvent(false);
@@ -117,7 +104,6 @@ const EventsAD = ({isAdmin,email}) => {
 
       const fileName = generateUniqueFileName();
 
-      // Generate signed URL to upload image
       const fileUrl = await s3.getSignedUrlPromise('putObject', {
         Bucket: 'events3',
         Key: fileName,
@@ -125,7 +111,6 @@ const EventsAD = ({isAdmin,email}) => {
         ContentType: newEvent.image_url.type,
       });
 
-      // Upload the image to S3
       const uploadResponse = await fetch(fileUrl, {
         method: "PUT",
         headers: { "Content-Type": newEvent.image_url.type },
@@ -136,13 +121,11 @@ const EventsAD = ({isAdmin,email}) => {
         throw new Error('Failed to upload image');
       }
 
-      // Prepare the event object with the image URL
       const eventWithImageURL = {
         ...newEvent,
         image_url: `https://events3.s3.eu-west-1.amazonaws.com/${fileName}`,  // Updated with the correct URL
       };
 
-      // Send event data to API (with image URL)
       const submitResponse = await fetch('https://y7a64avn3a.execute-api.eu-west-1.amazonaws.com/stagi/events', {
         method: 'POST',
         body: JSON.stringify(eventWithImageURL),
@@ -153,11 +136,9 @@ const EventsAD = ({isAdmin,email}) => {
         throw new Error('Failed to add event');
       }
 
-      // Reset form after event is added
       setNewEvent({ title: '', description: '', event_date: '', price: '', location: '', seats: 0, capacity: 0, image_url: null });
       setShowModal(false);
 
-      // Optionally, re-fetch events to update the event list
       const updatedEvents = await fetch('https://y7a64avn3a.execute-api.eu-west-1.amazonaws.com/stagi/events');
       setEvents(await updatedEvents.json());
 
@@ -168,10 +149,8 @@ const EventsAD = ({isAdmin,email}) => {
     }
   };
 
-  // Function to handle image load (after fetching)
   const handleImageLoad = () => {
-    setImageLoaded(true);  // Set imageLoaded to true after the image is loaded
-  };
+    setImageLoaded(true);    };
 
   return (
     <div className='eventad'>
