@@ -1,0 +1,13 @@
+{
+  "resourceName": "awsevent",
+  "policyUUID": "e96171ff",
+  "bucketName": "awseventbucket",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}

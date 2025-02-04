@@ -1,0 +1,33 @@
+.app-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: rgb(17, 17, 17); /* Light gray background */
+  }
+  
+  /* Style the Authenticator form */
+  .auth-container {
+    background: #121212;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  /* Override default Amplify input styles */
+  .amplify-input {
+    border: 2px solid #1b5668 !important;
+    border-radius: 6px !important;
+  }
+  
+.amplify-button:nth-child(2) {
+    color: rgb(255, 255, 255) !important;
+    background-color: #2fcefe;
+}
+.amplify-button:nth-child(3) {
+    color: rgb(255, 255, 255) !important;
+    background-color: #26a1c6;
+}
+
+

@@ -1,0 +1,171 @@
+.eventad{
+    width: 100%;
+    height: 100%;
+    margin-top: -400px;
+    color: black;
+    background-color: rgb(17, 17, 17);
+}
+.banner{
+    background-color: white;
+    height: 40px;
+    width: 100%;
+    text-align: center;
+    color: black;
+    font-size: large;
+    font-weight: bold;
+    margin-top: 10px;
+}
+.button2{
+    cursor: pointer;
+    background-color: white;
+    width: 100px;
+    font-weight: bold;
+    border-radius: 10px;
+    height:30px;
+    color: black;
+    margin-left: 20px;
+    padding:5px;
+    padding-left: 7px;
+    padding-top:3px
+}
+.event-carousel {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  background-color: rgb(27, 27, 27);
+  padding-left: 20px;
+  padding-bottom: 50px;
+  padding-top: 20px;
+  width: 100%;
+  overflow-x: auto; 
+  scrollbar-width:initial;
+  color: white;
+  scrollbar-color: #5b5b5b rgb(17, 17, 17);
+}
+
+.event-carousel::-webkit-scrollbar {
+  height: 10px; 
+}
+
+.event-carousel::-webkit-scrollbar-track {
+  background-color: #333; 
+  border-radius: 10px; 
+}
+
+.event-carousel::-webkit-scrollbar-thumb {
+  background-color: #ff0000; 
+  border-radius: 10px; 
+}
+
+.event-carousel::-webkit-scrollbar-thumb:hover {
+  background-color: #ff5555; 
+}
+.event-card {
+  width:200px;
+    height:300px; 
+  flex-shrink: 0; 
+}
+.event-card h3,p{
+    margin: 0px;
+    padding: 0px;
+}
+.event-image{
+    width:100%;
+    height: 180px;
+    margin-top: 10px;
+    border-radius: 20px;
+}.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  box-sizing: border-box;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+form input, form textarea {
+  width: 100%;
+  margin: 10px 0;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+form button {
+  padding: 10px 20px;
+  background-color: #00FFDD;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #00e6b3;
+}
+
+/* Flex container for side-by-side inputs */
+.input-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.input-group input {
+  width: 48%;  /* Adjust the width for side-by-side alignment */
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+}
+.details-modal{
+  position:relative;
+ background-color: rgb(17, 17, 17); 
+ margin-top: 20px;
+}
+.modalDetails{
+  display: flex;
+  flex-direction: row;
+  gap:30px;
+  padding-bottom: 40px;
+}
+.modalDetails img{
+  width:400px;
+  height: auto;
+  margin-left:30px;
+  border: 3px solid white;
+}
+.infosDetails{
+  color: white;
+  font-size: 25px;
+  font-weight:200;
+}
+.add
+{
+  position: relative;
+  left:800px;
+  background-color:white;
+  color: black;
+  padding:5px;
+  border-radius: 10px;
+  font-weight: 400;
+  cursor: pointer;
+}
