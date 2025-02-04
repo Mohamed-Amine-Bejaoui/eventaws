@@ -1,0 +1,30 @@
+import mysql from 'mysql2/promise';
+
+export const handler = async(event)=>{
+  const {username,event_id,registered_at,seatsT}=JSON.parse(event.body);
+  
+  const connection = await mysql.createConnection({
+    host: 'databaseName',
+    user: 'admin',
+    password: 'password',
+    database: 'dbName'
+  });
+  try{
+    const [result]=await connection.execute(
+      'INSERT INTO registrations (username,event_id,registered_at,seatsT) VALUES (?,?,?,?)',
+      [username,event_id,registered_at,seatsT]
+    );
+    return {
+      statusCode:200,
+      body:JSON.stringify({message:"registrated successfully",regisId:result.insertId})
+    }
+  }
+  catch (error) {
+    return { 
+        statusCode: 500, 
+        body: JSON.stringify({ error: error.message }) 
+    };
+} finally {
+    await connection.end();
+}
+}
